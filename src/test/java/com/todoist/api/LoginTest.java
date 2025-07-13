@@ -1,24 +1,25 @@
 package com.todoist.api;
 
+import com.todoist.driver.BaseAPI;
+import com.todoist.utils.AuthDataGenerator;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class LoginTest {
-
-    public static final String BASE_URL = "https://app.todoist.com/api/v9.223";
+public class LoginTest extends BaseAPI {
 
     @Test
     public void testLoginWithInvalidPassword() {
-        String email = LoginPage.genetareCorrectEmail(5, 10);
-        String password = LoginPage.generateCorrectPassword(8, 12);
+        LoginPage.AuthRequest authRequest = new LoginPage.AuthRequest(
+                AuthDataGenerator.generateEmail(5,10),
+                "wrong_password");
 
         given()
-                .header("Content-Type", "application/json")
-                .body(String.format("{\"email\": \"%s\", \"password\": \"%s\"}", email, password))
+                .body(authRequest)
                 .when()
-                .post(BASE_URL + "/user/login")
+                .post("/user/login")
                 .then()
-                .statusCode(401);
+                .statusCode(401)
+                .log().all();
     }
 }

@@ -1,10 +1,5 @@
 package com.todoist.api;
-
 import com.github.javafaker.Faker;
-import org.testng.annotations.Test;
-
-import static io.restassured.RestAssured.given;
-
 
 public class LoginPage {
 
@@ -22,5 +17,15 @@ public class LoginPage {
 
     public static String generateCorrectPassword(int minLength, int maxLength) {
         return faker.regexify("[a-zA-Z0-9!@#$%^&*]{" + minLength + "," + maxLength + "}");
+    }
+
+    public static class AuthRequest {
+        public String email;
+        public String password;
+
+        public AuthRequest(String email, String password) {
+            this.email = email;
+            this.password = password;
+        }
     }
 }
