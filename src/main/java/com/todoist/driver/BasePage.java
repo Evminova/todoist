@@ -1,4 +1,4 @@
-package com.todoist.ui;
+package com.todoist.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
