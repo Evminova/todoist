@@ -10,9 +10,10 @@ public class LoginTest extends BaseAPI {
 
     @Test
     public void testLoginWithInvalidPassword() {
-        LoginPage.AuthRequest authRequest = new LoginPage.AuthRequest(
-                AuthDataGenerator.generateEmail(5,10),
-                "wrong_password");
+        String randomEmail = AuthDataGenerator.generateEmail(5,10);
+        String invalidPassword = AuthDataGenerator.generatePassword(8,12);
+
+        LoginPage.AuthRequest authRequest = new LoginPage.AuthRequest(randomEmail, invalidPassword);
 
         given()
                 .body(authRequest)
