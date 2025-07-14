@@ -9,9 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
-public class PasswordRecoveryRequestTest extends BaseAPI {
+public class PasswordRecoveryTestAPI extends BaseAPI {
 
     private static final String RECOVERY_ENDPOINT = "/Users/sendResetPassword";
 
@@ -26,7 +25,7 @@ public class PasswordRecoveryRequestTest extends BaseAPI {
 
     @Test
     public void testRecoveryWithValidEmail() {
-        PasswordRecoveryRequest request = new PasswordRecoveryRequest(
+        PasswordRecoveryAPI request = new PasswordRecoveryAPI(
                 Config.getValidEmail()
         );
 
@@ -41,7 +40,7 @@ public class PasswordRecoveryRequestTest extends BaseAPI {
 
     @Test
     public void testRecoveryWithInvalidEmail() {
-        PasswordRecoveryRequest request = new PasswordRecoveryRequest(
+        PasswordRecoveryAPI request = new PasswordRecoveryAPI(
                 LoginDataGenerator.generateInvalidEmail()
         );
 
@@ -56,7 +55,7 @@ public class PasswordRecoveryRequestTest extends BaseAPI {
 
     @Test
     public void testRecoveryWithRandomEmail() {
-        PasswordRecoveryRequest request = new PasswordRecoveryRequest(
+        PasswordRecoveryAPI request = new PasswordRecoveryAPI(
                 LoginDataGenerator.generateValidEmail(5, 10)
         );
 

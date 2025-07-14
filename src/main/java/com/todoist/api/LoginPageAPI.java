@@ -1,10 +1,10 @@
 package com.todoist.api;
 
-public class LoginPageRequest {
+public class LoginPageAPI {
     public String email;
     public String password;
 
-    public LoginPageRequest(String email, String password) {
+    public LoginPageAPI(String email, String password) {
         this.email = email;
         this.password = password;
     }

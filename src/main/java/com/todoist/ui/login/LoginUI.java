@@ -1,14 +1,14 @@
 package com.todoist.ui.login;
 
-import com.todoist.driver.BasePage;
+import com.todoist.driver.BaseUI;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage {
+/*public class LoginUI extends BaseUI {
 
-    public LoginPage(WebDriver driver) {
+    public LoginUI(WebDriver driver) {
         super(driver);
     }
 
     public void login(String email, String password) {
     }
-}
+}*/
