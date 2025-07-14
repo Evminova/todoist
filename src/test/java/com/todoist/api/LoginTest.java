@@ -1,7 +1,8 @@
 package com.todoist.api;
 
 import com.todoist.driver.BaseAPI;
-import com.todoist.utils.AuthDataGenerator;
+import com.todoist.utils.LoginDataGenerator;
+import com.todoist.utils.Config;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -9,17 +10,19 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class LoginTest extends BaseAPI {
 
+    private static final String LOGIN_ENDPOINT = "/user/login";
+
     @Test
     public void testInvalidPassword() {
-        String randomEmail = AuthDataGenerator.generateEmail(5, 10);
-        String invalidPassword = AuthDataGenerator.generatePassword(8, 15);
+        String randomEmail = LoginDataGenerator.generateValidEmail(5, 8);
+        String invalidPassword = LoginDataGenerator.generatePassword(8, 15);
 
-        LoginPage.AuthRequest authRequest = new LoginPage.AuthRequest(randomEmail, invalidPassword);
+        LoginPageRequest loginPageRequest = new LoginPageRequest(randomEmail, invalidPassword);
 
         given()
-                .body(authRequest)
+                .body(loginPageRequest)
                 .when()
-                .post("/user/login")
+                .post(LOGIN_ENDPOINT)
                 .then()
                 .statusCode(401)
                 .log().all();
@@ -27,15 +30,15 @@ public class LoginTest extends BaseAPI {
 
     @Test
     public void testInvalidEmailFormat() {
-        String invalidEmail = AuthDataGenerator.generateInvalidEmail();
-        String password = AuthDataGenerator.generatePassword(8, 15);
+        String invalidEmail = LoginDataGenerator.generateInvalidEmail();
+        String password = LoginDataGenerator.generatePassword(8, 15);
 
-        LoginPage.AuthRequest authRequest = new LoginPage.AuthRequest(invalidEmail, password);
+        LoginPageRequest loginPageRequest = new LoginPageRequest(invalidEmail, password);
 
         given()
-                .body(authRequest)
+                .body(loginPageRequest)
                 .when()
-                .post("/user/login")
+                .post(LOGIN_ENDPOINT)
                 .then()
                 .statusCode(400)
                 .body("error", equalTo("Email is invalid"))
@@ -45,14 +48,14 @@ public class LoginTest extends BaseAPI {
     @Test
     public void testEmptyEmail() {
         String emptyEmail = "";
-        String password = AuthDataGenerator.generatePassword(8, 15);
+        String password = LoginDataGenerator.generatePassword(8, 15);
 
-        LoginPage.AuthRequest authRequest = new LoginPage.AuthRequest(emptyEmail, password);
+        LoginPageRequest loginPageRequest = new LoginPageRequest(emptyEmail, password);
 
         given()
-                .body(authRequest)
+                .body(loginPageRequest)
                 .when()
-                .post("/user/login")
+                .post(LOGIN_ENDPOINT)
                 .then()
                 .statusCode(400)
                 .body("error", equalTo("Email is invalid"))
@@ -66,10 +69,43 @@ public class LoginTest extends BaseAPI {
 
         given()
                 .when()
-                .post("/user/login")
+                .post(LOGIN_ENDPOINT)
                 .then()
                 .statusCode(400)
                 .body("error", equalTo("Required argument is missing"))
+                .log().all();
+    }
+
+    @Test
+    public void testValidEmailValidPassword() {
+        LoginPageRequest request = new LoginPageRequest(
+                Config.getValidEmail(),
+                Config.getValidPassword()
+        );
+
+        given()
+                .body(request)
+                .when()
+                .post(LOGIN_ENDPOINT)
+                .then()
+                .statusCode(200)
+                .log().all();
+    }
+
+    @Test
+    public void testValidEmailInvalidPassword() {
+        String validEmail = Config.getValidEmail();
+        String invalidPassword = LoginDataGenerator.generatePassword(8, 15);
+
+        LoginPageRequest loginPageRequest = new LoginPageRequest(validEmail, invalidPassword);
+
+        given()
+                .body(loginPageRequest)
+                .when()
+                .post(LOGIN_ENDPOINT)
+                .then()
+                .statusCode(401)
+                .body("error", equalTo("Wrong email or password"))
                 .log().all();
     }
 }

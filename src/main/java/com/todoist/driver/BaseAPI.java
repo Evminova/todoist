@@ -2,6 +2,7 @@ package com.todoist.driver;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 public class BaseAPI {
@@ -13,5 +14,10 @@ public class BaseAPI {
                 .setBasePath("/api/v9.223")
                 .addHeader("Content-Type", "application/json")
                 .build();
+    }
+
+    @AfterSuite
+    public void tearDown() {
+        RestAssured.reset();
     }
 }
