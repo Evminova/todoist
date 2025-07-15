@@ -1,19 +1,19 @@
 package com.todoist.driver;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseUI {
     protected WebDriver driver;
 
-    @BeforeEach
+    @BeforeMethod
     public void setUp() {
         driver = Driver.createDriver();
         driver.get("https://todoist.com/ru");
     }
 
-    @AfterEach
+    @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
