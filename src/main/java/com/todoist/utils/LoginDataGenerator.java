@@ -10,14 +10,14 @@ public class LoginDataGenerator {
     }
 
     public static String generateInvalidEmail() {
-        return "invalid" + faker.random().nextInt(100) + "@gmail";
+        return "invalid" + faker.random().nextInt(100) + "gmail";
     }
 
     public static String generatePassword(int minLength, int maxLength) {
         return faker.regexify("[A-Za-z0-9!@#$%]{" + minLength + "," + maxLength + "}");
     }
 
-    public static String getYourEmail() {
+    /*public static String getYourEmail() {
         return "evminova.iryna@yandex.ru";
-    }
+    }*/
 }
