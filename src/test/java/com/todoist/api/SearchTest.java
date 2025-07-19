@@ -1,6 +1,6 @@
 package com.todoist.api;
 
-import org.junit.jupiter.api.Assertions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -13,6 +13,6 @@ public class SearchTest {
         SearchPage searchPage = new SearchPage();
         String body = searchPage.makeSearchBoby(search);
 
-        Assertions.assertTrue(body.contains(search), "По запросу " + search + "не найден");
+        Assert.assertTrue(body.contains(search),search);
     }
 }

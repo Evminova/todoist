@@ -1,4 +1,4 @@
-package com.todoist.ui.signup;
+package com.todoist.ui.pages.signup;
 
 public class SignUpLocators {
     public static final String INPUT_FIELD_EMAIL_SIGNUP = "//input[@placeholder=\"Введите личный или рабочий Email-адрес…\"]";

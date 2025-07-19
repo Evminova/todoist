@@ -1,4 +1,4 @@
-package com.todoist.driver;
+package com.todoist.api;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;

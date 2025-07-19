@@ -1,6 +1,5 @@
 package com.todoist.api;
 
-import com.todoist.driver.BaseAPI;
 import com.todoist.utils.LoginDataGenerator;
 import com.todoist.utils.Config;
 import org.testng.annotations.Test;

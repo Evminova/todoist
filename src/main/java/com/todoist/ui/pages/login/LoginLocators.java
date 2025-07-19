@@ -1,4 +1,4 @@
-package com.todoist.ui.login;
+package com.todoist.ui.pages.login;
 
 public class LoginLocators {
     public static final String INPUT_FIELD_EMAIL = "//input[@placeholder=\"Введите Email-адрес…\"]";

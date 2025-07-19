@@ -1,7 +1,7 @@
 package com.todoist.ui;
 
-import com.todoist.driver.BaseUI;
-import com.todoist.ui.home.HomePage;
+import com.todoist.ui.pages.BaseUI;
+import com.todoist.ui.pages.home.HomePage;
 import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseUI {
@@ -11,5 +11,12 @@ public class HomePageTest extends BaseUI {
         HomePage homePage = new HomePage(driver);
         homePage.clickLoginButton();
         homePage.checkLoginPageOpened();
+    }
+
+    @Test
+    public void testEnterToSignUpPage() {
+        HomePage homePage = new HomePage(driver);
+        homePage.clickStartFreeButton();
+        homePage.checkSignUpPageOpened();
     }
 }
