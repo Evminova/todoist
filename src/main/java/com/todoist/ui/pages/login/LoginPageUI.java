@@ -12,7 +12,8 @@ import java.time.Duration;
 
 import static com.todoist.ui.pages.login.LoginLocators.*;
 
-public class LoginPageUI extends BaseUI {
+public class LoginPageUI {
+    private final WebDriver driver;
 
     public LoginPageUI(WebDriver driver) {
         this.driver = driver;

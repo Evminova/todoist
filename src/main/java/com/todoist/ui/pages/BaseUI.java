@@ -1,27 +1,20 @@
 package com.todoist.ui.pages;
 
 import com.todoist.driver.Driver;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import java.lang.reflect.Method;
 
 public class BaseUI {
     protected WebDriver driver;
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp(Method method) {
         driver = Driver.getDriver();
-        driver.get("https://app.todoist.com");
-
-        ((JavascriptExecutor) driver).executeScript("localStorage.setItem('language', 'ru');");
-        driver.manage().addCookie(new Cookie("language", "ru"));
-
-        driver.navigate().refresh();
-        driver.get("https://app.todoist.com/auth/login?local=ru");
+        driver.manage().deleteAllCookies();
     }
-
 
     @AfterMethod
     public void tearDown() {

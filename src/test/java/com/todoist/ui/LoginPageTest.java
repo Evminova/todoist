@@ -19,6 +19,7 @@ public class LoginPageTest extends BaseUI {
 
     @Test
     public void testValidLogin() {
+        driver.get("https://app.todoist.com");
         LoginPageUI loginPage = new LoginPageUI(driver);
         loginPage.login(Config.getValidEmail(), Config.getValidPassword());
 
@@ -27,6 +28,7 @@ public class LoginPageTest extends BaseUI {
 
     @Test
     public void testInvalidEmail() {
+        driver.get("https://app.todoist.com");
         LoginPageUI loginPage = new LoginPageUI(driver);
         loginPage.login(LoginDataGenerator.generateInvalidEmail(), Config.getValidPassword());
 
@@ -38,6 +40,7 @@ public class LoginPageTest extends BaseUI {
 
     @Test
     public void testValidEmailInvalidPassword() {
+        driver.get("https://app.todoist.com");
         LoginPageUI loginPage = new LoginPageUI(driver);
         loginPage.login(Config.getValidEmail(),
                 LoginDataGenerator.generatePassword(8,12));
@@ -50,6 +53,7 @@ public class LoginPageTest extends BaseUI {
 
     @Test
     public void testEmptyFields() {
+        driver.get("https://app.todoist.com");
         LoginPageUI loginPage = new LoginPageUI(driver);
         loginPage.login("", "");
 

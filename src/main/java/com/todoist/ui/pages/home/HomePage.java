@@ -1,6 +1,5 @@
 package com.todoist.ui.pages.home;
 
-import com.todoist.driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +20,8 @@ public class HomePage {
 
     public void clickLoginButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement loginButton = Driver.getDriver().findElement(By.xpath(ENTER_BUTTON));
+        WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath(ENTER_BUTTON)));
         loginButton.click();
     }
 
@@ -33,12 +33,13 @@ public class HomePage {
                 By.xpath(LOGIN_FORM))
         );
 
-        Assert.assertEquals(loginHeader.getText(), "Войти");
+        Assert.assertEquals(loginHeader.getText(), "Log in");
     }
 
     public void clickStartFreeButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement startFreeButton = Driver.getDriver().findElement(By.xpath(SIGNUP_BUTTON));
+        WebElement startFreeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath(SIGNUP_BUTTON)));
         startFreeButton.click();
     }
 
@@ -50,6 +51,6 @@ public class HomePage {
                 By.xpath(SIGNUP_FORM)
         ));
 
-        Assert.assertEquals(signUpHeader.getText(),"Регистрация");
+        Assert.assertEquals(signUpHeader.getText(),"Sign up");
     }
 }

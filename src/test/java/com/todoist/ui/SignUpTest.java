@@ -20,7 +20,6 @@ public class SignUpTest extends BaseUI {
     @Test
     public void testSuccessSignUp() {
         driver.get("https://app.todoist.com/auth/signup");
-
         SignUpPage signUpPage = new SignUpPage(driver);
         String validEmail = LoginDataGenerator.generateValidEmail(5, 10);
         String validPassword = LoginDataGenerator.generatePassword(8, 12);
@@ -37,7 +36,6 @@ public class SignUpTest extends BaseUI {
     @Test
     public void testExistingEmail() {
         driver.get("https://app.todoist.com/auth/signup");
-
         SignUpPage signUpPage = new SignUpPage(driver);
         String existingEmail = Config.getValidEmail();
         String existingPassword = Config.getValidPassword();
@@ -55,7 +53,6 @@ public class SignUpTest extends BaseUI {
     @Test
     public void testEmptyFieldsSignUp() {
         driver.get("https://app.todoist.com/auth/signup");
-
         SignUpPage signUpPage = new SignUpPage(driver);
         signUpPage.submitSignUpForm("", "");
 

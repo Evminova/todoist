@@ -11,7 +11,8 @@ import java.time.Duration;
 
 import static com.todoist.ui.pages.signup.SignUpLocators.*;
 
-public class SignUpPage extends BaseUI {
+public class SignUpPage {
+    private final WebDriver driver;
 
     public SignUpPage(WebDriver driver) {
         this.driver = driver;
