@@ -56,4 +56,11 @@ public class LoginPageUI extends BaseUI {
 
         return (String) js.executeScript("return arguments[0].validationMessage;", emailField);
     }
+
+    public boolean isPasswordInvalid() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement errorMessageEmptyPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath(ERROR_MESSAGE_WRONG_PASSWORD)));
+        return errorMessageEmptyPassword.isDisplayed();
+    }
 }

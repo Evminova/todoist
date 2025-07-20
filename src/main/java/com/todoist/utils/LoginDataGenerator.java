@@ -16,8 +16,4 @@ public class LoginDataGenerator {
     public static String generatePassword(int minLength, int maxLength) {
         return faker.regexify("[A-Za-z0-9!@#$%]{" + minLength + "," + maxLength + "}");
     }
-
-    /*public static String getYourEmail() {
-        return "evminova.iryna@yandex.ru";
-    }*/
 }

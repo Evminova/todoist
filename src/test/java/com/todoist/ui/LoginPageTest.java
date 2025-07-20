@@ -32,7 +32,6 @@ public class LoginPageTest extends BaseUI {
 
         Assert.assertTrue(loginPage.isEmailInvalid());
         String message = loginPage.getEmailValidationMessage();
-        System.out.println("Validation message: " + message);
 
         Assert.assertTrue(message.contains("@"));
     }
@@ -46,7 +45,18 @@ public class LoginPageTest extends BaseUI {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE)));
 
-        String actualErrorText = errorMessage.getText();
-        String expectedErrorText = "Неверный Email или пароль.";
+        Assert.assertEquals(errorMessage.getText(), "Wrong email or password.");
+    }
+
+    @Test
+    public void testEmptyFields() {
+        LoginPageUI loginPage = new LoginPageUI(driver);
+        loginPage.login("", "");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath(ERROR_MESSAGE_WRONG_PASSWORD)));
+
+        Assert.assertTrue(loginPage.isPasswordInvalid(), "Passwords must be at least 8 characters long.");
     }
 }
