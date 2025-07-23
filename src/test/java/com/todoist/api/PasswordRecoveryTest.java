@@ -4,12 +4,13 @@ import com.todoist.utils.Config;
 import com.todoist.utils.LoginDataGenerator;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class PasswordRecoveryTestAPI extends BaseAPI {
+public class PasswordRecoveryTest extends BaseAPI {
 
     private static final String RECOVERY_ENDPOINT = "/Users/sendResetPassword";
 
@@ -24,9 +25,7 @@ public class PasswordRecoveryTestAPI extends BaseAPI {
 
     @Test
     public void testRecoveryWithValidEmail() {
-        PasswordRecoveryAPI request = new PasswordRecoveryAPI(
-                Config.getValidEmail()
-        );
+        PasswordRecoveryAPI request = new PasswordRecoveryAPI(Config.getValidEmail());
 
         given()
                 .body(request)

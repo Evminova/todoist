@@ -3,16 +3,15 @@ package com.todoist.api;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
 
 public class SearchTest {
 
     @Test
     public void testSearch() {
-        String search = "Запрос возврата средств";
+        String search = "Product updates";
         SearchPage searchPage = new SearchPage();
-        String body = searchPage.makeSearchBoby(search);
+        String body = String.valueOf(searchPage.makeSearchBody(search));
 
-        Assert.assertTrue(body.contains(search),search);
+        Assert.assertTrue(body.contains(search),"Response body should contain search query: " + search);
     }
 }

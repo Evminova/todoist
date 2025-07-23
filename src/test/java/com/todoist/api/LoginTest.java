@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class LoginTestAPI extends BaseAPI {
+public class LoginTest extends BaseAPI {
 
     private static final String LOGIN_ENDPOINT = "/user/login";
 
