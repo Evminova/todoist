@@ -1,6 +1,5 @@
 package com.todoist.ui.pages.signup;
 
-import com.todoist.ui.pages.BaseUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

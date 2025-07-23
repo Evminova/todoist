@@ -1,6 +1,5 @@
 package com.todoist.ui.pages.login;
 
-import com.todoist.ui.pages.BaseUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

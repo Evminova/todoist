@@ -39,6 +39,14 @@
 - Использование невалидного емейла
 - Валидный емейл и невалидный пароль
 - Отправка формы с пустыми полями
+
+```java
+@Test
+public void testValidEmailInvalidPassword() {
+loginPage.login(Config.getValidEmail(), generatePassword(8,12));
+Assert.assertEquals(errorMessage.getText(), "Wrong email or password.");
+}
+```
 ---
 
 ## API Тестовые сценарии:
@@ -49,6 +57,19 @@
 - Запрос на восстановление пароля с валидным емейлом
 - Запрос на восстановление пароля с невалидным емейлом
 - Ипользование поля поиска в Help Center модуле
+
+```java
+@Test
+public void testInvalidEmailFormat() {
+given()
+.body(new LoginPageAPI(invalidEmail, password))
+.post(LOGIN_ENDPOINT)
+.then()
+.statusCode(400)
+.body("error", equalTo("Email is invalid"));
+}
+```
+
 ---
 ## Генерация данных
 
@@ -59,6 +80,6 @@
 - generateInvalidEmail()
 - generatePassword()
 
-![alt text](docs/login.png)
+---
 
 ### Irina Evminova
