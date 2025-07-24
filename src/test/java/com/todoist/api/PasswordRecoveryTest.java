@@ -4,7 +4,6 @@ import com.todoist.utils.Config;
 import com.todoist.utils.LoginDataGenerator;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

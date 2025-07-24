@@ -16,10 +16,10 @@ public class LoginTest extends BaseAPI {
         String randomEmail = LoginDataGenerator.generateValidEmail(5, 8);
         String invalidPassword = LoginDataGenerator.generatePassword(8, 15);
 
-        LoginPageAPI loginPageAPI = new LoginPageAPI(randomEmail, invalidPassword);
+        LoginModelAPI loginModelAPI = new LoginModelAPI(randomEmail, invalidPassword);
 
         given()
-                .body(loginPageAPI)
+                .body(loginModelAPI)
                 .when()
                 .post(LOGIN_ENDPOINT)
                 .then()
@@ -32,10 +32,10 @@ public class LoginTest extends BaseAPI {
         String invalidEmail = LoginDataGenerator.generateInvalidEmail();
         String password = LoginDataGenerator.generatePassword(8, 15);
 
-        LoginPageAPI loginPageAPI = new LoginPageAPI(invalidEmail, password);
+        LoginModelAPI loginModelAPI = new LoginModelAPI(invalidEmail, password);
 
         given()
-                .body(loginPageAPI)
+                .body(loginModelAPI)
                 .when()
                 .post(LOGIN_ENDPOINT)
                 .then()
@@ -49,10 +49,10 @@ public class LoginTest extends BaseAPI {
         String emptyEmail = "";
         String password = LoginDataGenerator.generatePassword(8, 15);
 
-        LoginPageAPI loginPageAPI = new LoginPageAPI(emptyEmail, password);
+        LoginModelAPI loginModelAPI = new LoginModelAPI(emptyEmail, password);
 
         given()
-                .body(loginPageAPI)
+                .body(loginModelAPI)
                 .when()
                 .post(LOGIN_ENDPOINT)
                 .then()
@@ -77,7 +77,7 @@ public class LoginTest extends BaseAPI {
 
     @Test
     public void testValidEmailValidPassword() {
-        LoginPageAPI request = new LoginPageAPI(
+        LoginModelAPI request = new LoginModelAPI(
                 Config.getValidEmail(),
                 Config.getValidPassword()
         );
@@ -96,10 +96,10 @@ public class LoginTest extends BaseAPI {
         String validEmail = Config.getValidEmail();
         String invalidPassword = LoginDataGenerator.generatePassword(8, 15);
 
-        LoginPageAPI loginPageAPI = new LoginPageAPI(validEmail, invalidPassword);
+        LoginModelAPI loginModelAPI = new LoginModelAPI(validEmail, invalidPassword);
 
         given()
-                .body(loginPageAPI)
+                .body(loginModelAPI)
                 .when()
                 .post(LOGIN_ENDPOINT)
                 .then()
