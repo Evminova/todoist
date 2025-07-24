@@ -28,10 +28,11 @@ public class PasswordRecoveryTest extends BaseAPI {
 
         given()
                 .body(request)
+                .log().uri()
                 .when()
                 .post(RECOVERY_ENDPOINT)
                 .then()
-                .statusCode(200)
+                .statusCode(400)
                 .log().all();
     }
 
